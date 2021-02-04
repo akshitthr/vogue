@@ -1,0 +1,57 @@
+{% extends "vogue/layout.html" %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block signup %}active{% endblock %}
+
+{% block main %}
+
+    <!-- Error message -->
+    {% if message %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <!-- Sign up form -->
+    <form action="{% url 'signup' %}" method="post">
+        {% csrf_token %}
+        <div class="divout" id="signup-form">
+            <div class="divin">
+                <h2 class="logo">Vogue</h2>
+                <h2 class="create">Create your Vogue Account</h2>
+
+                <div id="signup-divr">
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="lname" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="confirm" placeholder="Confirm Password" required>
+                    </div>
+                </div>
+
+                <div id="signup-divl">
+                    <div class="form-group">
+                        <input class="form-control" autofocus type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="fname" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                    </div>    
+                </div>
+
+                <div id="passwd-info">Create a password that has 8 or more characters</div>
+                <input class="btn btn-primary" type="submit" id="sign-up-btn" value="Sign up">
+            </div>
+        </div><br>
+    </form>        
+    Already have an account? <a href="{% url 'signin' %}">Sign In here.</a>
+
+{% endblock %}

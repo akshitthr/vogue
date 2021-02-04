@@ -1,0 +1,422 @@
+main .form-control {
+    display: inline-block;
+}
+
+main
+{
+    text-align: center;
+}
+
+@media (max-width: 549px) {
+    #follow-div {
+        width: 40%;
+        display: inline-block;
+    }
+
+    #welcome {
+        font-size: 36px;
+    }
+
+    #sub {
+        font-size: 12px;
+    }
+
+    #sub2 {
+        font-size: 10px;
+    }
+
+    #search-bar {
+        margin: auto;
+    }
+
+    #search-input {
+        width: 70%;
+        margin: 8px;
+    }
+
+    #search-btn {
+        float: right;
+    }
+}
+
+@media (min-width: 550px) {
+    #signin-form {
+        width: 75%;
+    }
+
+    #signup-form {
+        width: auto;
+    }
+
+    #follow-div {
+        width: 30%;
+        display: inline-block;
+    }
+    #jumbotron {
+        height: auto;
+    }
+
+    #welcome {
+        font-size: 44px;
+    }
+
+    #sub {
+        font-size: 18px;
+    }
+
+    #sub2 {
+        font-size: 14px;
+    }
+
+    #search-bar {
+        width: 70%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 800px) {
+    #signin-form {
+        width: 60%;
+    }
+
+    #signup-form {
+        width: 85%;
+    }
+
+    #signup-divr {
+        float: right;
+    }
+
+    #signup-divl {
+        float: left;
+    }
+
+    #user-info {
+        width: 80%;
+    }
+    
+    #follow-div {
+        width: 25%;
+        display: inline-block;
+    }
+
+    #sign-up-btn {
+        float: right;
+        margin-bottom: 18px;
+    }
+
+    #jumbotron {
+        height: 400px;
+    }
+    
+    #welcome {
+        font-size: 56px;
+    }
+
+    #sub {
+        font-size: 20px;
+    }
+
+    #sub2 {
+        font-size: 16px;
+    }
+
+    #search-bar {
+        width: 50%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 1000px) {
+    #signin-form {
+        width: 42%;
+    }
+
+    #signup-form {
+        width: 62%;
+    }
+
+    #signup-divr {
+        float: right;
+    }
+
+    #signup-divl {
+        float: left;
+    }
+
+    #dis-div {
+        width: 75%;
+    }
+
+    #user-info {
+        width: 50%;
+        float: left;
+        margin-left: 12.5%;
+    }
+    
+    #follow-div {
+        width: 15%;
+        float: right;
+        margin-top: 2%;
+        margin-right: 15%;
+    }
+    
+    #user {
+        overflow: hidden;
+    }
+
+    #jumbotron {
+        float: left;
+        width: 50%;
+        height: 400px;
+    }
+
+    #welcome {
+        font-size: 44px;
+    }
+
+    #sub {
+        font-size: 18px;
+    }
+
+    #sub2 {
+        font-size: 14px;
+    }
+
+    #search-bar {
+        width: 36%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    #signin-form {
+        width: 35%;
+    }
+
+    #signup-form {
+        width: 50%;
+    }
+
+    #signup-divr {
+        float: right;
+    }
+
+    #signup-divl {
+        float: left;
+    }
+
+    #dis-div {
+        width: 70%;
+    }
+
+    #new-dis-btn {
+        float: right;
+    }
+
+    #jumbotron {
+        float: left;
+        width: 60%;
+        height: 400px;
+    }
+    
+    #welcome {
+        font-size: 56px;
+    }
+
+    #sub {
+        font-size: 20px;
+    }
+
+    #sub2 {
+        font-size: 16px;
+    }
+
+    #search-bar {
+        width: 30%;
+        margin: auto;
+    }
+}
+
+.divout
+{
+    background-color: white;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border: 1px solid #dadce0;
+    overflow: hidden;
+    margin: auto;
+}
+
+.divin-post {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 18px;
+}
+
+.divin-comment {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.divin {
+    padding: 24px;
+}
+
+.item
+{
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: .6875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #5f6368;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.data
+{
+    letter-spacing: .00625em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #202124;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.create
+{
+    font-family: sans-serif;
+    padding-bottom: 12px;
+    padding-top: 6px;
+    text-align: left;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 32px;
+    margin-left: 6px;
+}
+
+.vogue {
+    font-family: forte, 'comic sans ms', 'Franklin Gothic Medium', sans-serif;
+    font-size: 28px;
+}
+
+.heading {
+    text-align: left;
+}
+
+.r {
+    float: inline-end;
+}
+
+.l {
+    float: left;
+}
+
+.timestamp-sml {
+    font-size: small;
+    color: gray;
+}
+
+.timestamp-med {
+    font-size: 14px;
+    color: gray;
+}
+
+.l-align {
+    text-align: left;
+}
+
+#passwd-info {
+    float: left;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.alert {
+    display: inline-block;
+    width: 50%;
+}
+
+.discussion {
+    margin-bottom: 15px;
+    float: left;
+}
+
+#topic-label {
+    float: left;
+    font-family: decker;
+}
+
+#new-dis {
+    width: 90%;
+}
+
+#dis-name {
+    font-size: 17px;
+}
+
+.post-comment {
+    width: 85%;
+}
+
+.comment {
+    width: 92%;
+}
+
+.signin {
+    width: 80%;
+}
+
+.no-float {
+    float: none;
+}
+
+#follow-divin {
+    padding: 20px;
+}
+
+.like-btn {
+    background: 0;
+    border: 0;
+    display: flex;
+    padding: 0%;
+    margin-right: 3px;
+    margin-top: 1px;
+    float: left;
+}
+
+.like-count {
+    float: none;
+    font-size: 16px;
+}
+
+.like-div {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 12px;
+}
+
+.logo {
+    font-family: forte; 
+}
+
+#signin-create {
+    text-align: center;
+}

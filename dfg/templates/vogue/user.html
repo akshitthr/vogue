@@ -1,0 +1,120 @@
+{% extends "vogue/layout.html" %}
+{% load static %}
+
+{% block title %}{% if request.user.username == userinfo.username %}Profile{% else %}User: {{ userinfo.username }}{% endif %}{% endblock %}
+
+{% block profile %}{% if request.user.username == userinfo.username %}active{% endif %}{% endblock %}
+
+{% block main %}
+
+    <div id="user">
+        <!-- User information -->
+        <div class="divout" id="user-info">
+            <div class="divin">
+                <h3 class="item">Name</h3>
+                <div class="data">{{ userinfo.first_name }} {{ userinfo.last_name }}</div>
+
+                <hr class="my-4">
+            
+                <h3 class="item">Username</h3>
+                <div class="data">{{ userinfo.username }}</div>
+
+                <hr class="my-4">
+            
+                <h3 class="item">Email</h3>
+                <div class="data">{{ userinfo.email }}</div>        
+            </div>
+        </div><br>
+
+        <!-- Follower information -->
+        <div id="follow-div">
+            <div class="divout">
+                <div class="divin" id="follow-divin">
+                    <h6>Following: {{ following_count }}</h6>
+                    <hr>
+                    <h6>Followers: {{ follower_count }}</h6>
+                </div>
+            </div><br>
+            {% if request.user.username != userinfo.username %}
+                <form action="{% url 'follow' %}" method="POST">{% csrf_token %}
+                    <button class="btn btn-primary" name="username" value="{{ userinfo.username }}" type="submit">{% if following %}Unfollow{% else %}Follow{% endif %}</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr class="my-4"><br>
+
+    <h5 class="heading">{{ userinfo.first_name }}'s Posts:</h5><br>
+    
+    <!-- Posts -->
+    {% for post in posts %}
+        <div class="divout l-align">
+            <div data-toggle="collapse" data-target="#p{{ post.id }}">
+                <div class="divin-post">
+                    <a href="/user/{{ post.user }}">{{ post.user }}</a> at <a href="/d/{{ post.discussion.id }}">{{ post.discussion.discussion }}</a><br>
+                    <h6>{{ post.post }}</h6>
+                    <h6 class="timestamp-sml">{{ post.timestamp }}</h6>
+                </div>
+            </div>
+            <div class="like-div">
+                <button class="like-btn" id="l{{ post.id }}" value="{{ post.id }}"></button>
+                <h6 class="like-count" id="c{{ post.id }}"></h6>
+            </div>
+        </div><br>
+        <!-- Comment section -->
+        <div class="collapse" id="p{{ post.id }}">
+            <form action="{% url 'new' %}" method="post">{% csrf_token %}
+                <input hidden name="discussion_id" value="{{ post.discussion.id }}">
+                <input hidden name="post_id" value="{{ post.id }}">
+                <input hidden name="pagename" value="user">
+                <input hidden name="username" value="{{ userinfo.username }}">
+                <input class="form-control post-comment" name="comment" placeholder="Post a comment">
+                <button class="btn btn-primary no-float" type="submit">Post</button>
+            </form><br>
+            {% for comment in comments %}
+                {% if comment.post.id == post.id %}
+                    <div class="divout l-align comment">
+                        <div class="divin-comment">
+                            <a href="/user/{{ comment.user }}">{{ comment.user }}</a>
+                            <h6>{{ comment.comment }}</h6>
+                            <h6 class="timestamp-sml">{{ comment.timestamp }}</h6>
+                        </div>
+                    </div><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% empty %}
+        <h5>No posts to show</h5>
+    {% endfor %}
+
+    <!-- Pagination -->
+    {% if posts.has_other_pages %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if posts.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                {% endif %}
+                {% for i in posts.paginator.page_range %}
+                    {% if posts.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link">{{ i }}
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if posts.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+{% endblock %}

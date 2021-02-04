@@ -1,0 +1,28 @@
+{% extends "vogue/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Vogue
+{% endblock %}
+
+{% block main %}
+    <div class="jumbotron" id="jumbotron">
+        <h1 class="display-4" id="welcome">Welcome to Vogue!</h1>
+        <p class="lead" id="sub">Vogue is a trendy website which you can use to socialize with your friends, family or even strangers.</p>
+        <hr class="my-4">
+        <p id="sub2">You can follow you friends, create posts, like posts, join discussions and even start your own discussion!</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">Sign up</a>
+    </div>
+    <div>
+        <figure class="figure">
+            <img src="{% static 'vogue/images/discussions.jpg' %}" class="figure-img img-fluid rounded" alt="Questions Page" width="350" height="175">
+            <figcaption class="figure-caption text-center">Start a discussion</figcaption>
+        </figure>
+    </div>
+    <div>
+        <figure class="figure">
+            <img src="{% static 'vogue/images/user.jpg' %}" class="figure-img img-fluid rounded" alt="Discussions Page" width="350" height="175">
+            <figcaption class="figure-caption text-center">Socialize with your friends</figcaption>
+        </figure>
+    </div>
+{% endblock %}

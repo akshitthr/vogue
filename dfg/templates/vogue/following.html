@@ -1,0 +1,87 @@
+{% extends "vogue/layout.html" %}
+{% load static %}
+
+{% block title %}Following{% endblock %}
+
+{% block following %}active{% endblock %}
+
+{% block main %}
+
+    <!-- Search Bar -->
+    <div id="search-bar">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" id="search-input" type="text" placeholder="Search Discussions" name="q" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
+        </form>
+    </div><br>
+
+    <!-- Posts -->
+    {% for post in posts %}
+        <div class="divout l-align">
+            <div data-toggle="collapse" data-target="#p{{ post.id }}">
+                <div class="divin-post">
+                    <a href="/user/{{ post.user }}">{{ post.user }}</a> at <a href="/d/{{ post.discussion.id }}">{{ post.discussion.discussion }}</a><br>
+                    <h6>{{ post.post }}</h6>
+                    <h6 class="timestamp-sml">{{ post.timestamp }}</h6>
+                </div>
+            </div>
+            <div class="like-div">
+                <button class="like-btn" id="l{{ post.id }}" value="{{ post.id }}"></button>
+                <h6 class="like-count" id="c{{ post.id }}"></h6>
+            </div>
+        </div><br>
+        <!-- Comment section -->
+        <div class="collapse" id="p{{ post.id }}">
+            <form action="{% url 'new' %}" method="post">{% csrf_token %}
+                <input hidden name="discussion_id" value="{{ post.discussion.id }}">
+                <input hidden name="post_id" value="{{ post.id }}">
+                <input hidden name="pagename" value="following">
+                <input class="form-control post-comment" name="comment" placeholder="Post a comment">
+                <button class="btn btn-primary no-float" type="submit">Post</button>
+            </form><br>
+            {% for comment in comments %}
+                {% if comment.post.id == post.id %}
+                    <div class="divout l-align comment">
+                        <div class="divin-comment">
+                            <a href="/user/{{ comment.user }}">{{ comment.user }}</a>
+                            <h6>{{ comment.comment }}</h6>
+                            <h6 class="timestamp-sml">{{ comment.timestamp }}</h6>
+                        </div>
+                    </div><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% empty %}
+        <h5>No posts to show</h5>
+    {% endfor %}
+
+    <!-- Pagination -->
+    {% if posts.has_other_pages %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if posts.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                {% endif %}
+                {% for i in posts.paginator.page_range %}
+                    {% if posts.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link">{{ i }}
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if posts.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "vogue/layout.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block signin %}active{% endblock %}
+
+{% block main %}
+
+    <!-- Error message -->
+    {% if message %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <!-- Sign in form -->
+    <form action="{% url 'signin' %}" method="post">
+        {% csrf_token %}
+        <div class="divout" id="signin-form">
+            <div class="divin">
+                <h2 class="logo">Vogue</h2>
+                <h2 class="create" id="signin-create">Sign In</h2>
+                
+                <div class="form-group">
+                    <input class="form-control signin" autofocus required name="username" type="text" placeholder="Username">
+                </div>
+                
+                <div class="form-group">
+                    <input class="form-control signin" required name="password" type="password" placeholder="Password">
+                </div>
+                
+                <button class="btn btn-primary" type="submit">Sign In</button>
+            </div>
+        </div><br>
+    </form>
+
+    Don't have an account? <a href="{% url 'signup' %}">Sign up here.</a>
+
+{% endblock %}

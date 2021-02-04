@@ -1,0 +1,31 @@
+{% extends "vogue/layout.html" %}
+
+{% block title %}Discussions{% endblock %}
+
+{% block discussions %}active{% endblock %}
+
+{% block main %}
+
+    <h2>Discussions</h2>
+    <br>
+    <div class="divout" id="dis-div">
+        <div class="divin">
+            <!-- New discussion form -->
+            <form action="{% url 'discussions' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="topic" id="topic-label">Start a discussion:</label>
+                    <input id="new-dis" class="form-control" id="topic" name="name" placeholder="Discussion Name" required></textarea>
+                    <button id="new-dis-btn" class="btn btn-primary" type="submit">Post</button>
+                </div>
+            </form>
+            <!-- All discussions -->
+            {% for discussion in discussions %}
+                <div class="discussion">
+                    <a class="btn btn-link" href="/d/{{ discussion.id }}"><h6 id="dis-name">{{ discussion.discussion }}</h6></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}
